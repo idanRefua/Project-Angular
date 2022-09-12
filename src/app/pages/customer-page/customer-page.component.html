@@ -1,0 +1,47 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Customers</h3>
+  </div>
+  <div class="panel-body">
+    <div *ngIf="displayMode == DisplayModes.table">
+      <app-customers-table
+        (currentCustomer)="setCurrentCustomer($event)"
+        (displayMode)="setDisplayMode($event)"
+        [customers]="customers"
+      ></app-customers-table>
+
+      <br />
+      <button class="btn btn-success" (click)="addCustomer()">
+        Add customer
+      </button>
+    </div>
+
+    <div *ngIf="displayMode == DisplayModes.details">
+      <app-add-edit-display-customer
+        [disabled]="true"
+        [customer]="currentCustomer"
+      >
+      </app-add-edit-display-customer>
+    </div>
+
+    <div *ngIf="displayMode == DisplayModes.add">
+      <app-add-edit-display-customer [customer]="currentCustomer">
+      </app-add-edit-display-customer>
+      <button (click)="createCustomer()">Create Customer Now</button>
+    </div>
+
+    <div *ngIf="displayMode == DisplayModes.edit">
+      <app-add-edit-display-customer [customer]="currentCustomer">
+      </app-add-edit-display-customer>
+      <button (click)="updateCustomer()">Update</button>
+    </div>
+
+    <!-- קוד צרכני-->
+    <button
+      (click)="displayMode = DisplayModes.table"
+      *ngIf="displayMode != DisplayModes.table"
+    >
+      Back
+    </button>
+  </div>
+</div>

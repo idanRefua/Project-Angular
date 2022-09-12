@@ -1,0 +1,31 @@
+<div>I am from table : {{ name }}</div>
+
+<table>
+  <tr>
+    <th>No.</th>
+    <th>First Name</th>
+    <th>Birthday</th>
+    <th>Email</th>
+    <th>Phone</th>
+  </tr>
+
+  <tr
+    *ngFor="
+      let contact of dataService.allContacts | filterContacts: name;
+      let num = index
+    "
+  >
+    <th>
+      {{ num + 1 }}
+    </th>
+    <td>
+      <img src="{{ contact.avatar }}" alt="avatar" class="img-thumbnail" />
+      {{ contact.name }}
+    </td>
+    <td>{{ contact.birthday }}</td>
+    <td>{{ contact.email }}</td>
+    <td>
+      <li *ngFor="let phone of contact.phones">{{ phone }}</li>
+    </td>
+  </tr>
+</table>

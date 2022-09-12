@@ -1,0 +1,19 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Contacts</h3>
+  </div>
+
+  <div class="panel-body">
+    <input
+      type="button"
+      value="search"
+      (click)="updateName(nameOfUserInput.value)"
+    />
+    <input #nameOfUserInput type="text" />
+
+    <div>Filter Name is : {{ filterName }}</div>
+    <br /><br />
+
+    <app-contacts-table [name]="filterName"></app-contacts-table>
+  </div>
+</div>

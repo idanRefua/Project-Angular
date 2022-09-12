@@ -1,0 +1,47 @@
+
+Filter customers by 
+<div class="div-filter">
+  <input
+[(ngModel)]="searchFirst" 
+class="input-filter"
+type="text"
+placeholder="First Name"
+/>
+  <input
+[(ngModel)]="searchLast" 
+class="input-filter"
+type="text"
+placeholder="Last Name"
+/>
+  <input
+[(ngModel)]="searchPhone" 
+class="input-filter"
+type="text"
+placeholder="Phone Name"
+/>
+
+</div>
+<br>
+<hr>
+<table>
+      <tr>
+        <th >No.</th>
+        <th >First Name</th>
+        <th >Last Name</th>
+        <th>Phone</th>
+        <th >Email</th>
+      </tr>
+      <tr *ngFor="let customer of customers | customersPipe:searchParams;
+let num = index;">
+          <th>
+            {{num+1}}
+            <table-icons (display)="displayCustomerDetails(customer)" (edit)="editCustomer(customer)"
+              (remove)="removeCustomer(customer)">
+            </table-icons>
+          </th>
+          <td>{{customer.first}}</td>
+          <td>{{customer.last}}</td>
+          <td>{{customer.phone}}</td>
+          <td>{{customer.email}}</td>
+      </tr>
+  </table>
